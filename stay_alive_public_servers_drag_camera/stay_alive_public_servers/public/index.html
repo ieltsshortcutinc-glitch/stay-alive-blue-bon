@@ -77,7 +77,7 @@ if(phase==='won'||phase==='lost'){ctx.fillStyle='#000b';ctx.fillRect(0,0,W,H);ct
 if(!me.alive&&phase==='playing'){ctx.fillStyle='#0008';ctx.fillRect(0,H-65,W,65);ctx.textAlign='center';ctx.fillStyle='#fff';ctx.font='bold 22px system-ui';ctx.fillText('SPECTATING SURVIVORS',W/2,H-25)}
 if(scareAt&&performance.now()-scareAt<1900){const f=(performance.now()-scareAt)/1900;ctx.save();ctx.translate((Math.random()-.5)*25,(Math.random()-.5)*25);bonDraw(W/2,H/2+250,550+f*400,t);ctx.restore();ctx.fillStyle=`rgba(210,0,0,${.18+.3*Math.sin(f*20)**2})`;ctx.fillRect(0,0,W,H)} }
 function tick(ms){const dt=last?Math.min(.05,(ms-last)/1000):0;last=ms;if(room&&phase==='playing'){
- if(bonLastPos){const moved=Math.hypot(bon.x-bonLastPos.x,bon.y-bonLastPos.y);const speed=dt>0?Math.min(4,moved/dt):0;bonMotion+=(Math.min(1,speed/1.4)-bonMotion)*Math.min(1,dt*9);bonStride+=dt*(4+speed*3)*bonMotion;}
+ if(bonLastPos){const moved=Math.hypot(bon.x-bonLastPos.x,bon.y-bonLastPos.y);const speed=dt>0?Math.min(4,moved/dt):0;bonMotion+=(Math.min(1,speed/1.4)-bonMotion)*Math.min(1,dt*9);bonStride+=dt*(10+speed*6)*bonMotion;}
  bonLastPos={x:bon.x,y:bon.y};
  }else{bonMotion*=Math.max(0,1-dt*8);bonLastPos=null;}
 if(room&&phase==='playing'&&me.alive){if(keys.arrowleft)angle-=dt*2.4;if(keys.arrowright)angle+=dt*2.4;send({type:'input',w:!!keys.w,a:!!keys.a,s:!!keys.s,d:!!keys.d,shift:!!keys.shift,crouch:!!keys.control,angle})}if(room)render(ms/1000);requestAnimationFrame(tick)}requestAnimationFrame(tick);connect();
