@@ -1,0 +1,1 @@
+{"name":"stay-alive-public-servers","version":"1.0.0","private":true,"description":"Blue Bon browser multiplayer server","scripts":{"start":"node server.js","test":"node --check server.js"},"dependencies":{"ws":"^8.18.0"},"engines":{"node":">=18"}}
