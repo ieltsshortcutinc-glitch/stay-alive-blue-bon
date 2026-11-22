@@ -69,3 +69,4 @@ function createBon3D(THREE) {
 
   return bon;
 }
+window.createBon3D = createBon3D;
