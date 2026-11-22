@@ -1,4 +1,4 @@
-function setupBon3DRenderer() {
+Afunction setupBon3DRenderer() {
   if (!window.THREE || !window.createBon3D) {
     console.warn("3D Bon is not ready yet.");
     return null;
