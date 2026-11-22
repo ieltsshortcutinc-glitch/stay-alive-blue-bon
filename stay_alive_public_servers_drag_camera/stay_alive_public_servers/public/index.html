@@ -85,6 +85,29 @@ function tick(ms){const dt=last?Math.min(.05,(ms-last)/1000):0;last=ms;if(room&&
  }else{bonMotion*=Math.max(0,1-dt*8);bonLastPos=null;}
 if(room&&phase==='playing'&&me.alive){if(keys.arrowleft)angle-=dt*2.4;if(keys.arrowright)angle+=dt*2.4;send({type:'input',w:!!keys.w,a:!!keys.a,s:!!keys.s,d:!!keys.d,shift:!!keys.shift,crouch:!!keys.control,angle})}if(room)render(ms/1000);requestAnimationFrame(tick)}requestAnimationFrame(tick);connect();
 })();
-return bon;
-}
-window.createBon3D = createBon3D;
+</script>
+<script>
+window.addEventListener('load', () => {
+  const preview = window.setupBon3DRenderer?.();
+  if (!preview) {
+    console.error('Bon 3D preview could not start');
+    return;
+  }
+
+  const canvas = preview.renderer.domElement;
+  canvas.style.cssText =
+    'position:fixed;right:12px;bottom:12px;' +
+    'width:200px;height:200px;z-index:9999;' +
+    'pointer-events:none;';
+
+  document.body.appendChild(canvas);
+
+  function draw(time) {
+    preview.animate(time);
+    requestAnimationFrame(draw);
+  }
+
+  requestAnimationFrame(draw);
+});
+</script></body>
+</html>
